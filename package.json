@@ -1,0 +1,29 @@
+{
+  "name": "erp_v1",
+  "version": "1.0.0",
+  "description": "Initial ERP Development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon bin/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlwaysDeveloper/erp_v1.git"
+  },
+  "author": "Mukul Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlwaysDeveloper/erp_v1/issues"
+  },
+  "homepage": "https://github.com/AlwaysDeveloper/erp_v1#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.5",
+    "nodemon": "^2.0.4"
+  }
+}
