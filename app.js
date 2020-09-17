@@ -12,6 +12,9 @@ const cors = require('cors');
 
 const AppError = require('./utils/appError');
 
+//routes imports
+const userRouter = require('./routes/user.route');
+
 const app = express();
 
 app.enable('trust proxy');
@@ -38,6 +41,10 @@ app.use(mongoSanitize());
 // Data sanitization against xss
 app.use(xss());
 
+// Defining routes as of url pattern
+app.use('/erp_v1/api/v1/user', userRouter);
+
+// When no url pattern matches
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't able tp find ${req.originalUrl} on the server!`), 404);
 });
