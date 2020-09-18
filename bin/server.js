@@ -8,7 +8,6 @@ process.on('uncaughtException', error => {
     helperFactory.serverCrashHandler(error);
 });
 
-console.log(helperFactory.mongoURLMaker());
 mongoose.connect(
     helperFactory.mongoURLMaker(),{
         useNewUrlParser: true,
@@ -21,7 +20,7 @@ mongoose.connect(
 const server = app.listen(
     helperFactory.getPort,
     () => {
-        console.log(`Application is running at ${helperFactory.getPort()}`)
+        console.log(`Application is running at port: ${helperFactory.getPort()}`)
     }
 );
 
