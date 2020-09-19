@@ -25,11 +25,11 @@ app.options('*', cors());
 app.use(helmet());
 
 const limiter = rateLimit({
-    max: 100,
-    windowMs: 60 * 60 * 1000,
-    message: 'You got you request quota full this IP, try again after an hour'
- });
- app.use('/api', limiter);
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: 'You got you request quota full this IP, try again after an hour'
+});
+app.use('/api', limiter);
 
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
@@ -46,7 +46,7 @@ app.use('/erp_v1/api/v1/user', userRouter);
 
 // When no url pattern matches
 app.all('*', (req, res, next) => {
-    next(new AppError(`Can't able tp find ${req.originalUrl} on the server!`), 404);
+  next(new AppError(`Can't able tp find ${req.originalUrl} on the server!`), 404);
 });
 
 module.exports = app;
