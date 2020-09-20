@@ -18,9 +18,9 @@ mongoose.connect(
 ).then(() => console.log('MonogoDB is now connected and ready for use 🧐..'));
 
 const server = app.listen(
-    helperFactory.getPort,
+    helperFactory.getPort(),
     () => {
-        console.log(`Application is running at port: ${helperFactory.getPort()}`)
+        console.log(`Application is running at port:${helperFactory.getPort()}`)
     }
 );
 

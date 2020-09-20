@@ -16,7 +16,9 @@ exports.mongoURLMaker = () => {
     const URL = process.env.MONGO_CONNECT_URL.replace(
         '<password>',
         process.env.MONGO_CONNECT_PASSWORD
-    )
+    );
+
+    URL.replace('<dbname>', process.env.MONGO_CONNECT_DB)
 
     return URL;
 }
