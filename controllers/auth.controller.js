@@ -6,6 +6,7 @@ const AuthHelper = require('./../utils/authHelper');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 
+<<<<<<< HEAD
 const User = require('./../models/user.model');
 
 exports.login = catchAsync( async (req, res, next) => {
@@ -27,3 +28,12 @@ exports.login = catchAsync( async (req, res, next) => {
         }
     )
 } );
+=======
+exports.login = catchAsync(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return next(new AppError('Please provide email and password!', 400));
+  }
+});
+>>>>>>> c824acc364d16e15cebec039a9a6798ad1c45740
