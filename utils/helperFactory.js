@@ -13,21 +13,13 @@ exports.rejectionHandler = (error, server) => {
 };
 
 exports.mongoURLMaker = () => {
-<<<<<<< HEAD
-    const URL = process.env.MONGO_CONNECT_URL.replace(
-        '<password>',
-        process.env.MONGO_CONNECT_PASSWORD
-    );
+  const URL = process.env.MONGO_CONNECT_URL.replace('<password>', process.env.MONGO_CONNECT_PASSWORD).replace(
+    '<dbname>',
+    process.env.MONGO_CONNECT_DB
+  );
 
-    URL.replace('<dbname>', process.env.MONGO_CONNECT_DB)
-
-    return URL;
-}
-=======
-  const URL = process.env.MONGO_CONNECT_URL.replace('<password>', process.env.MONGO_CONNECT_PASSWORD);
   return URL;
 };
->>>>>>> c824acc364d16e15cebec039a9a6798ad1c45740
 
 exports.getPort = () => {
   const defaultPort = 3000;

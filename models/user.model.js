@@ -20,26 +20,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: 'default.jpg'
   },
-  role: {
+  accessType: {
     type: String,
-    enum: ['admin', 'sales-admin', 'teach-admin', 'accounts-admin', 'parent', 'emp'],
-    default: 'emp'
+    enum: [0, 1, 2, 3, 4, 5],
+    default: 5
   },
   password: {
     type: String,
-    default: '$2y$12$UfdDo25RmIgo2HVUXAwK1OR09/tEriCKLl/wvjDialhQHact5s2eW',
+    default: process.env.DEFAULT_PASSWORD,
     select: false
-  },
-  passwordConfirm: {
-    type: String,
-    default: '123456789',
-    validate: {
-      // This only works on CREATE and SAVE!!!
-      validator: function(el) {
-        return el === this.password;
-      },
-      message: 'Passwords are not the same!'
-    }
   },
   passwordChangedAt: Date,
   passwordResetToken: String,
@@ -57,10 +46,11 @@ userSchema.pre(/^find/, function(next) {
   });
   next();
 });
-<<<<<<< HEAD
+
+userSchema.methods.passwordCheck = async function(onCall, trueCall) {
+  return await bcrypt.compare(onCall, trueCall);
+};
 
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
-=======
->>>>>>> c824acc364d16e15cebec039a9a6798ad1c45740

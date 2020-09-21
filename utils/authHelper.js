@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const { promisify } = require('util');
 
 class authHelper {
   signToken(id) {
@@ -13,6 +15,14 @@ class authHelper {
       httpOnly: true,
       secure: res.secure || req.header['x-forwarded-proto'] === 'https'
     };
+  }
+
+  async passwordCheck(toCheck, byCheck) {
+    return await bcrypt.compare(toCheck, byCheck);
+  }
+
+  async decodeToken(token) {
+    return await promisify(jwt.verify)(token, process.env.JWT_SECRET);
   }
 }
 
