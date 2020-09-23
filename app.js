@@ -13,6 +13,7 @@ const AppError = require('./utils/appError');
 
 //routes imports
 const userRouter = require('./routes/user.route');
+const attendenceRouter = require('./routes/attendence.route');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use(xss());
 
 // Defining routes as of url pattern
 app.use('/erp_v1/api/v1/user', userRouter);
+app.use('/erp_v1/api/v1/attendence', attendenceRouter);
 
 // When no url pattern matches
 app.all('*', (req, res, next) => {

@@ -1,8 +1,8 @@
 exports.accessList = {
   0: 'root',
   1: 'admin',
-  2: 'accounts-admin',
-  3: 'sales-admin',
+  2: 'teacher',
+  3: 'HOD',
   4: 'teach-admin',
   5: 'user'
 };

@@ -9,7 +9,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
   });
 
   newUser.password = undefined;
-  
+
   res.status(200).json({
     status: 'success',
     user: newUser
