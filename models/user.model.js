@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     default: 'default.jpg'
   },
   accessType: {
-    type: String,
+    type: Number,
     enum: [0, 1, 2, 3, 4, 5],
     default: 5
   },
