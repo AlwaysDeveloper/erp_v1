@@ -21,8 +21,9 @@ exports.makeAttendence = catchAsync(async (req, res, next) => {
 });
 
 exports.updateAttendence = catchAsync(async (req, res, next) => {
-  console.log(req.params);
+  const attendence = await ClassAttendence.updateOne({ _id: req.params });
   res.status(200).json({
-    status: 'success'
+    status: 'success',
+    attendence
   });
 });

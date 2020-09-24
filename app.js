@@ -11,6 +11,8 @@ const cors = require('cors');
 
 const AppError = require('./utils/appError');
 
+//jobs imports
+const ipCaptures = require('./jobs/ipCapture');
 //routes imports
 const userRouter = require('./routes/user.route');
 const attendenceRouter = require('./routes/attendence.route');
@@ -43,9 +45,9 @@ app.use(mongoSanitize());
 app.use(xss());
 
 // Defining routes as of url pattern
-app.use('/erp_v1/api/v1/user', userRouter);
-app.use('/erp_v1/api/v1/attendence', attendenceRouter);
-app.use('/erp_v1/api/v1/special', specialRouter);
+app.use('/erp_v1/api/v1/user', ipCaptures, userRouter);
+app.use('/erp_v1/api/v1/attendence', ipCaptures, attendenceRouter);
+app.use('/erp_v1/api/v1/special', ipCaptures, specialRouter);
 // When no url pattern matches
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't able to find ${req.originalUrl} on the server!`), 404);
