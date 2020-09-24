@@ -10,8 +10,9 @@ const classSchema = mongoose.Schema({
     required: [true],
     unique: true
   },
-  subjectName: {
-    type: String,
+  subject: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Subject',
     required: [true]
   },
   teacher: {
