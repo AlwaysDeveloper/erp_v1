@@ -10,8 +10,9 @@ router.use(authController.protect);
 
 router.get('/home', homeController.homeData);
 
+// restricted routes for root and admin
 router.use(authController.restrict(0, 1));
 
-router.post('/createUser', rootAdminController.createUser);
+router.post('/createAccount', rootAdminController.createUser);
 
 module.exports = router;

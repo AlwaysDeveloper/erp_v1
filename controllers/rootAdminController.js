@@ -1,12 +1,24 @@
 const User = require('./../models/user.model');
+const Emp = require('./../models/empModel');
 const catchAsync = require('./../utils/catchAsync');
 
 exports.createUser = catchAsync(async (req, res, next) => {
-  const newUser = await User.create({
-    name: req.body.name,
-    empId: req.body.empId,
-    accessType: req.body.accessType
-  });
+  let newUser;
+  if (req.query.accountType === 3 || req.query.accountType === 4) {
+    newUser = await Emp.create({
+      name: req.body.name,
+      empId: req.body.id,
+      accessType: req.body.accessType,
+      photo: req.body.photo
+    });
+  } else {
+    newUser = await User.create({
+      name: req.body.name,
+      studentId: req.body.id,
+      accessType: req.body.accessType,
+      photo: req.body.photo
+    });
+  }
 
   newUser.password = undefined;
 

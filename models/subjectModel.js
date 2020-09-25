@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 
 const subjectSchema = mongoose.Schema({
-  _id: {
-    type: String
+  code: {
+    type: String,
+    required: [true],
+    unique: true
   },
   name: {
     type: String,

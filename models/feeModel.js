@@ -13,7 +13,7 @@ const feeSchema = mongoose.Schema({
   left: {
     type: Number
   },
-  transsionNumber: {
+  transactionNumber: {
     type: String,
     required: [true]
   }

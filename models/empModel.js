@@ -5,12 +5,12 @@ const validator = require('validator');
 
 const { codes } = require('./../bin/accessControlAndCodes');
 
-const userSchema = new mongoose.Schema({
+const empSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, codes.error_name]
   },
-  studentId: {
+  empId: {
     type: String,
     required: [true, codes.empId],
     unique: true,
@@ -20,13 +20,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: 'default.jpg'
   },
-  stream: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Stream',
-    required: [true]
-  },
   accessType: {
     type: Number,
+    enum: [2, 3, 4],
     default: 5
   },
   password: {
@@ -44,17 +40,17 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-userSchema.pre(/^find/, function(next) {
+empSchema.pre(/^find/, function(next) {
   this.find({
     active: { $ne: false }
   });
   next();
 });
 
-userSchema.methods.passwordCheck = async function(onCall, trueCall) {
+empSchema.methods.passwordCheck = async function(onCall, trueCall) {
   return await bcrypt.compare(onCall, trueCall);
 };
 
-const User = mongoose.model('User', userSchema);
+const Emp = mongoose.model('User', empSchema);
 
-module.exports = User;
+module.exports = Emp;
