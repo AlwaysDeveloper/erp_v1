@@ -51,6 +51,6 @@ empSchema.methods.passwordCheck = async function(onCall, trueCall) {
   return await bcrypt.compare(onCall, trueCall);
 };
 
-const Emp = mongoose.model('User', empSchema);
+const Emp = mongoose.model('Emp', empSchema);
 
 module.exports = Emp;
