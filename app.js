@@ -25,6 +25,9 @@ app.enable('trust proxy');
 app.use(cors());
 app.options('*', cors());
 
+// Serving static files
+app.use(express.static(path.join(__dirname, 'web')));
+
 app.use(helmet());
 
 const limiter = rateLimit({
