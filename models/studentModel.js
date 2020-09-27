@@ -29,6 +29,10 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 5
   },
+  organization: {
+    type: String,
+    required: [true]
+  },
   password: {
     type: String,
     default: process.env.DEFAULT_PASSWORD,

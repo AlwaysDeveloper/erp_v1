@@ -25,6 +25,10 @@ const empSchema = new mongoose.Schema({
     enum: [2, 3, 4],
     default: 5
   },
+  organization: {
+    type: String,
+    required: [true]
+  },
   password: {
     type: String,
     default: process.env.DEFAULT_PASSWORD,

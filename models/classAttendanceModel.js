@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const classSchema = mongoose.Schema({
+  organization: {
+    type: String,
+    required: [true]
+  },
   subjectCode: {
     type: String,
     required: [true]

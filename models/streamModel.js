@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const streamSchema = mongoose.Schema({
+  organization: {
+    type: String,
+    required: [true]
+  },
   name: {
     type: String,
     required: [true]

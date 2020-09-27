@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const feeSchema = mongoose.Schema({
+  organization: {
+    type: String,
+    required: [true]
+  },
   student: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'

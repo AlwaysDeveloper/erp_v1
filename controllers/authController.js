@@ -5,18 +5,21 @@ const AuthHelper = require('../utils/authHelper');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
-const User = require('../models/studentModel');
+const Student = require('../models/studentModel');
+const Emp = require('./../models/empModel');
 
 const authHelper = new AuthHelper();
 
 exports.login = catchAsync(async (req, res, next) => {
-  const { empId, password } = req.body;
+  const { id, password } = req.body;
 
-  if (!empId || !password) {
+  if (!id || !password) {
     return next(new AppError('Please provide email and password!', 400));
   }
 
-  const user = await User.findOne({ empId }).select(['+password', '-passwordConfirm']);
+  const user =
+    (await Student.findOne({ empId: id }).select(['+password', '-passwordConfirm'])) ||
+    (await Emp.findOne({ empId: id }).select(['+password', '-passwordConfirm']));
 
   if (!user || !authHelper.passwordCheck(password, user.password)) {
     return next(new AppError('Incorrect email or password', 400));
@@ -52,7 +55,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   const decoded = await authHelper.decodeToken(token);
 
-  const currentUser = await User.findById(decoded.id);
+  const currentUser = (await Emp.findById(decoded.id)) || (await Emp.findById(decoded.id));
 
   if (!currentUser) {
     return next(new AppError('The user belonging to this token does not longer exist.', 401));
