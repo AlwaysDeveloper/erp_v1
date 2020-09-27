@@ -1,4 +1,4 @@
-const ClassAttendence = require('../models/classModel');
+const ClassAttendence = require('../models/classAttendanceModel');
 
 const catchAsync = require('../utils/catchAsync');
 

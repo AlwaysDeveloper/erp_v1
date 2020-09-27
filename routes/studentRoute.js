@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
-const rootAdminController = require('./../controllers/rootAdminController');
-const authController = require('./../controllers/auth.controller');
-const homeController = require('./../controllers/homeController');
+const rootAdminController = require('../controllers/rootAdminController');
+const authController = require('../controllers/authController');
+const homeController = require('../controllers/homeController');
 
 router.post('/login', authController.login);
 

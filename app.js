@@ -14,9 +14,9 @@ const AppError = require('./utils/appError');
 //jobs imports
 const ipCaptures = require('./jobs/ipCapture');
 //routes imports
-const userRouter = require('./routes/user.route');
-const attendenceRouter = require('./routes/attendence.route');
-const specialRouter = require('./routes/special.route');
+const userRouter = require('./routes/studentRoute');
+const attendenceRouter = require('./routes/attendenceRoute');
+const specialRouter = require('./routes/specialRoute');
 
 const app = express();
 

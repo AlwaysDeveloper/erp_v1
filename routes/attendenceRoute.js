@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 // const rootAdminController = require('./../controllers/rootAdminController');
-const authController = require('./../controllers/auth.controller');
+const authController = require('../controllers/authController');
 const teacherController = require('../controllers/attendenceController');
 
 router.use(authController.protect);

@@ -1,11 +1,11 @@
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 
-const AuthHelper = require('./../utils/authHelper');
-const catchAsync = require('./../utils/catchAsync');
-const AppError = require('./../utils/appError');
+const AuthHelper = require('../utils/authHelper');
+const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
 
-const User = require('./../models/user.model');
+const User = require('../models/studentModel');
 
 const authHelper = new AuthHelper();
 

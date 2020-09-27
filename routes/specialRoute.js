@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
 // const rootAdminController = require('./../controllers/rootAdminController');
-const authController = require('./../controllers/auth.controller');
-const specialController = require('./../controllers/specialController');
+const authController = require('../controllers/authController');
+const specialController = require('../controllers/specialController');
 
 router.use(authController.protect);
 router.get('/getSubject', specialController.getSubject);
