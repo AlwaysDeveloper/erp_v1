@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const AuthHelper = require('../utils/authHelper');
 const catchAsync = require('../utils/catchAsync');
