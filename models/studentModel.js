@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const validator = require('validator');
 
-const { codes } = require('../bin/accessControlAndCodes');
+const { codes } = require('./../bin/accessControlAndCodes');
 
 const userSchema = new mongoose.Schema({
   name: {
