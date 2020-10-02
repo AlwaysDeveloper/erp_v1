@@ -8,9 +8,6 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const session = require('express-session');
-const redis = require('redis');
-const RedisStore = require('connect-redis')(session);
 
 const AppError = require('./utils/appError');
 
@@ -20,22 +17,13 @@ const ipCaptures = require('./jobs/ipCapture');
 const userRouter = require('./routes/studentRoute');
 const attendenceRouter = require('./routes/attendenceRoute');
 const specialRouter = require('./routes/specialRoute');
+const { session } = require('./redis/redisHelper');
 
 const app = express();
-const redisClient = redis.createClient();
 
 app.enable('trust proxy');
 
-app.use(
-  session({
-    secret: process.env.REDIS_SECRET,
-    name: '__erp_v1_session',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }, // Note that the cookie-parser module is no longer needed
-    store: new RedisStore({ host: 'localhost', port: 6379, client: redisClient, ttl: 86400 })
-  })
-);
+app.use(session);
 app.use(cors());
 app.options('*', cors());
 

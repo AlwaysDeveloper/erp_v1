@@ -22,7 +22,7 @@ const empSchema = new mongoose.Schema({
   },
   accessType: {
     type: Number,
-    enum: [2, 3, 4],
+    enum: [0, 1, 2, 3, 4],
     default: 5
   },
   organization: {
