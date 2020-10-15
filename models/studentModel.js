@@ -29,6 +29,18 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 5
   },
+  dob: {
+    type: Date,
+    required: [true]
+  },
+  phone: {
+    type: [String],
+    required: [true]
+  },
+  email: {
+    type: String,
+    required: [true]
+  },
   organization: {
     type: String,
     required: [true]

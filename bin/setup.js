@@ -1,5 +1,6 @@
 require('dotenv').config({ path: './bin/config.env' });
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const readline = require('readline').createInterface({
   input: process.stdin,
   output: process.stdout
@@ -21,10 +22,10 @@ const createAdmin = async admin => {
   });
   await Emp.create(admin).then((err, data) => {
     if (err) {
-      console.log(data);
+      console.log(err);
       process.exit(1);
     } else if (data) {
-      console.log(data);
+      console.log(`The root setup is ready with empId ${data.empId}`);
       process.exit(1);
     }
   });
@@ -33,16 +34,16 @@ const createAdmin = async admin => {
 function setup() {
   readline.question('please enter your root id: ', id => {
     readline.question('please enter your password: ', password => {
-      readline.question('Confim password: ', confirmPassword => {
-        if (confirmPassword !== new RegExp(password)) {
+      readline.question('Confim password: ', async confirmPassword => {
+        if (confirmPassword !== password) {
           console.log('Password not matched');
           process.exit(1);
         }
+        password = await bcrypt.hash(password, 12);
         const admin = {
           name: 'sysAdmin',
           empId: id,
           password: password,
-          confirmPassword: confirmPassword,
           accessType: 0,
           organization: 'system'
         };
