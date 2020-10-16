@@ -1,0 +1,32 @@
+.loginForm{
+    height: 80%;
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+}
+
+#login{
+    position: relative;
+    height: 15%;
+    width: 30%;
+    border-radius: 100px;
+    border: 2px solid white;
+    margin-top: 5%;
+    cursor: pointer;
+    transition: 1s;
+}
+
+#login:hover{
+    transition: 1s;
+    background-color: rgba(231, 99, 82, 0.849);
+}
+
+p, h3{
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+input{
+    border-radius: 50px !important;
+    border: none !important;
+}
+

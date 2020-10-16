@@ -1,0 +1,13 @@
+.height-full{
+    height: 100%;
+}
+.width-full{
+    width: 100%;
+}
+.container{
+    height: 100vh;
+}
+.no-padding-margin{
+    padding: 0% !important;
+    margin: 0% !important;
+}  

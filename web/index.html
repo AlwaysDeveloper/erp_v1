@@ -4,8 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/common/common.css" rel="stylesheet">
+    <link href="./css/common/dimensions.css" rel="stylesheet">
+    <link href="./css/common/gradients.css" rel="stylesheet">
+    <link href="./css/common/positions.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+      
+      
+    </style>
 </head>
-<body>
-    <h3>This pages starts here</h3>
+<body class="fifty_shades_of_grey" style="color: white;">
+  
+  <div class="container container-fluid">
+    <div class="row height-full center-position no-padding-margin">
+      <div class="col-lg-6 col-sm-12 height-full center-position no-padding-margin">
+        <div class="height-full width-full center-position no-padding-margin">
+          <form action="" class="width-full center-position no-padding-margin loginForm">
+            <div class="form-group x-center-position">
+              <h3 class="center">PLEASE LOGIN TO CONTINUE</h3>
+            </div>
+            <div class="form-group col-sm-10 center-position no-padding-margin" style="height: 50%;">
+              <div class="form-group col-sm-10 x-center-position">
+                <label for="id">Student/Employee ID</label>
+                <input type="text" class="form-control" id="id" aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text" style="color: #ffffffa6;"></small>
+              </div>
+              <div class="form-group col-sm-10 x-center-position">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password">
+              </div>
+              <!-- <div class="form-group form-check col-sm-9 x-center-position">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+              </div> -->
+              <div class="x-center-position" id="login">
+                <p class="center center-position">Login</p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./javascript/bin/environment.js"></script>
+  <script src="./javascript/common/jquery.js"></script>
+  <script src="./javascript/login.js"></script>
 </body>
 </html>

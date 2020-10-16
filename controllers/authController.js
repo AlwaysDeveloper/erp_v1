@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const redis = require('redis');
 
+const { copyFile } = require('fs');
 const AuthHelper = require('../utils/authHelper');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
@@ -20,7 +21,7 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   const user =
-    // (await Student.findOne({ empId: id }).select(['+password', '-passwordConfirm'])) ||
+    (await Student.findOne({ empId: id }).select(['+password', '-passwordConfirm'])) ||
     (await Emp.findOne({ empId: id }).select(['+password', '-passwordConfirm']));
 
   if (!user || !authHelper.passwordCheck(password, user.password)) {
@@ -34,7 +35,7 @@ exports.login = catchAsync(async (req, res, next) => {
   res.cookie('jwt', token, authHelper.cookieOptions);
 
   redisHelper.setSession(token, user);
-[]
+
   res.status(200).json({
     status: 'success',
     token,
@@ -49,7 +50,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     token = req.headers.authorization.split(' ')[1];
-  } else if (req.headers.jwt) {
+  } else if (req.headers.cookie) {
     token = req.cookies.jwt;
   }
 
@@ -60,7 +61,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   // const decoded = await authHelper.decodeToken(token);
 
   // const currentUser = (await Emp.findById(decoded.id)) || (await Emp.findById(decoded.id));
-  const currentUser = redisHelper.getSession(token);
+  const currentUser = await redisHelper.getSession(token);
 
   if (!currentUser) {
     return next(new AppError('The user belonging to this token does not longer exist.', 401));
@@ -80,3 +81,16 @@ exports.restrict = (...accessCodes) => {
     next();
   };
 };
+
+exports.isLogin = catchAsync(async (req, res, next) => {
+  let user;
+  if (typeof req.user === 'string') {
+    user =
+      (await Student.findOne({ _id: req.user }).select(['+password', '-passwordConfirm'])) ||
+      (await Emp.findOne({ _id: req.user }).select(['+password', '-passwordConfirm']));
+  }
+  res.status(200).json({
+    status: 'success',
+    user
+  });
+});
