@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const redis = require('redis');
-
+const { promisify } = require('util');
 const { copyFile } = require('fs');
 const AuthHelper = require('../utils/authHelper');
 const catchAsync = require('../utils/catchAsync');
@@ -60,7 +60,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   // const decoded = await authHelper.decodeToken(token);
 
-  // const currentUser = (await Emp.findById(decoded.id)) || (await Emp.findById(decoded.id));
+  // const currentUser = (await Emp.findById(deoded.id)) || (await Emp.findById(decoded.id));
   const currentUser = await redisHelper.getSession(token);
 
   if (!currentUser) {
@@ -83,14 +83,8 @@ exports.restrict = (...accessCodes) => {
 };
 
 exports.isLogin = catchAsync(async (req, res, next) => {
-  let user;
-  if (typeof req.user === 'string') {
-    user =
-      (await Student.findOne({ _id: req.user }).select(['+password', '-passwordConfirm'])) ||
-      (await Emp.findOne({ _id: req.user }).select(['+password', '-passwordConfirm']));
-  }
   res.status(200).json({
     status: 'success',
-    user
+    user: req.user
   });
 });

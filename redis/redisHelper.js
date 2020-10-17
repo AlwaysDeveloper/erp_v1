@@ -1,5 +1,6 @@
 const session = require('express-session');
 const redis = require('redis');
+const { promisify } = require('util');
 const RedisStore = require('connect-redis')(session);
 
 const redisClient = redis.createClient();
@@ -14,11 +15,26 @@ exports.session = session({
 });
 
 exports.setSession = (token, user) => {
-  redisClient.setex(token, 5400, `${user._id}`);
+  redisClient.setex(token, 5400, JSON.stringify(user));
 };
 
 exports.getSession = token => {
-  redisClient.get(token, (err, res) => {
-    if (res) return res;
+  return new Promise((resolve, reject) => {
+    redisClient.get(token, (err, val) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      if (val == null) {
+        resolve(null);
+        return;
+      }
+
+      try {
+        resolve(JSON.parse(val));
+      } catch (ex) {
+        resolve(val);
+      }
+    });
   });
 };
