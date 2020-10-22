@@ -17,6 +17,7 @@ const ipCaptures = require('./jobs/ipCapture');
 const userRouter = require('./routes/studentRoute');
 const attendenceRouter = require('./routes/attendenceRoute');
 const specialRouter = require('./routes/specialRoute');
+const viewRouter = require('./routes/viewsRoute');
 const { session } = require('./redis/redisHelper');
 
 const app = express();
@@ -26,9 +27,6 @@ app.enable('trust proxy');
 app.use(session);
 app.use(cors());
 app.options('*', cors());
-
-// Serving static files
-app.use(express.static(path.join(__dirname, 'web')));
 
 app.use(helmet());
 
@@ -50,6 +48,8 @@ app.use(mongoSanitize());
 app.use(xss());
 
 // Defining routes as of url pattern
+// Serving static files
+app.use('/', viewRouter);
 app.use('/erp_v1/api/v1/user', ipCaptures, userRouter);
 app.use('/erp_v1/api/v1/attendence', ipCaptures, attendenceRouter);
 app.use('/erp_v1/api/v1/special', ipCaptures, specialRouter);

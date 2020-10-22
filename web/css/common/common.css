@@ -3,3 +3,11 @@
     justify-content: center;
     align-items: center;
 }
+
+.preLoader{
+    width: 100%;
+    z-index: 99999999;
+    background: whitesmoke;
+    display: none;
+    position: absolute !important;
+}
