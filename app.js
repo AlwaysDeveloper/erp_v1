@@ -17,7 +17,7 @@ const ipCaptures = require('./jobs/ipCapture');
 const userRouter = require('./routes/studentRoute');
 const attendenceRouter = require('./routes/attendenceRoute');
 const specialRouter = require('./routes/specialRoute');
-const viewRouter = require('./routes/viewsRoute');
+const viewRouter = require('./routes/staticRoute');
 const { session } = require('./redis/redisHelper');
 
 const app = express();
