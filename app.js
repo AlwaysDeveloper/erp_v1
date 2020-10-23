@@ -49,10 +49,10 @@ app.use(xss());
 
 // Defining routes as of url pattern
 // Serving static files
-app.use('/', viewRouter);
 app.use('/erp_v1/api/v1/user', ipCaptures, userRouter);
 app.use('/erp_v1/api/v1/attendence', ipCaptures, attendenceRouter);
 app.use('/erp_v1/api/v1/special', ipCaptures, specialRouter);
+app.use('/', viewRouter);
 // When no url pattern matches
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't able to find ${req.originalUrl} on the server!`), 404);

@@ -8,7 +8,7 @@ window.onload = () => {
       url: `${environment.URL_HEAD_USER}/isLogin`,
       method: 'GET',
       success: res => {
-        $('#preLoader').css('display', 'none');
+        window.location.replace(`${environment.accessList[res.user.accessType]}/home`);
       },
       error: () => {
         $('#preLoader').css('display', 'none');
@@ -27,10 +27,13 @@ $('#login').click(() => {
     method: 'POST',
     data,
     beforeSend: () => {
-      console.log(`Trying to login with the credentials....`);
+      $('#preLoader').css('display', 'block');
     },
     success: res => {
-      console.log(res);
+      window.location.replace(`${environment.accessList[res.data.user.accessType]}/home`);
+    },
+    error: () => {
+      $('#preLoader').css('display', 'none');
     }
   });
 });

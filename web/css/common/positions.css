@@ -9,3 +9,11 @@
     left: 50%;
     transform: translateX(-50%);
 }
+.y-center-position{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.absolute{
+    position: absolute;
+}
