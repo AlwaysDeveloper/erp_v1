@@ -86,6 +86,7 @@ exports.restrict = (...accessCodes) => {
 exports.isLogin = catchAsync(async (req, res, next) => {
   redisHelper.setSession(req.token, req.user);
   res.status(200).json({
-    status: 'success'
+    status: 'success',
+    user: req.user
   });
 });
