@@ -91,3 +91,12 @@ exports.isLogin = catchAsync(async (req, res, next) => {
     user: req.user
   });
 });
+
+exports.logout = catchAsync(async (req, res, next) => {
+  await redisHelper.delSession(req.token);
+  res.clearCookie('jwt');
+  res.clearCookie('__erp_v1_session');
+  res.status(200).json({
+    status: 'logout'
+  });
+});

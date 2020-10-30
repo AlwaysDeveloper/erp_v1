@@ -25,5 +25,30 @@ window.onload = () => {
         }
       }
     });
+  } else {
+    window.location.replace('/');
   }
 };
+
+$('#avatar').click(() => {
+  $.ajax({
+    url: `${environment.URL_HEAD_USER}/logout`,
+    method: 'GET',
+    beforeSend: () => {
+      preLoader.preLoaderToggle();
+    },
+    success: res => {
+      console.log(typeof res);
+      window.location.replace('/');
+    },
+    error: (xhr, e) => {
+      // eslint-disable-next-line default-case
+      switch (xhr.status) {
+        case 401:
+          console.log(e);
+          window.location.replace('/');
+          break;
+      }
+    }
+  });
+});

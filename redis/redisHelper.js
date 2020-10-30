@@ -33,7 +33,28 @@ exports.getSession = token => {
       try {
         resolve(JSON.parse(val));
       } catch (ex) {
-        resolve(val);
+        resolve(ex);
+      }
+    });
+  });
+};
+
+exports.delSession = token => {
+  return new Promise((resolve, reject) => {
+    redisClient.del(token, (err, reply) => {
+      if (err) {
+        reject(reply);
+        return;
+      }
+      if (reply == null) {
+        resolve(null);
+        return;
+      }
+
+      try {
+        resolve(JSON.parse(reply));
+      } catch (ex) {
+        resolve(ex);
       }
     });
   });

@@ -6,6 +6,7 @@ const homeController = require('../controllers/homeController');
 
 router.post('/login', authController.login);
 router.get('/isLogin', authController.protect, authController.isLogin);
+router.get('/logout', authController.protect, authController.logout);
 
 router.use(authController.protect);
 
