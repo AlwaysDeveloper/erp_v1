@@ -3,7 +3,7 @@ const getIp = (req, res, next) => {
   if (ip.includes('::ffff:')) {
     ip = ip.split(/::ffff:/)[1];
   }
-  console.log(ip);
+  req.clientIP = ip;
   next();
 };
 

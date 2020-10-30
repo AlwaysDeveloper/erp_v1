@@ -2,6 +2,8 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 
+const mime = require('./../utils/mimeType');
+
 const viewRoutes = {
   //Admin routes
   admin: {
@@ -16,9 +18,9 @@ const viewRoutes = {
   }
 };
 
-const servePages = (req, res, next) => {
+const servePages = async (req, res, next) => {
   let fileDir;
-  req.mimeType = 'html';
+  req.mimeType = await mime.mimeType('html');
   if (
     req.originalUrl.includes('/css') ||
     req.originalUrl.includes('/javascript') ||
@@ -26,7 +28,7 @@ const servePages = (req, res, next) => {
     req.originalUrl.split('.')[1] === 'ico'
   ) {
     fileDir = path.join(path.join(__dirname, '/../web', req.originalUrl));
-    req.mimeType = req.originalUrl.split('.')[1] === 'js' ? 'javascript' : req.originalUrl.split('.')[1];
+    req.mimeType = await mime.mimeType(req.originalUrl.split('.')[1]);
   } else {
     const URL = req.originalUrl.split('/');
     const subURL = URL[1];
@@ -44,7 +46,7 @@ const fileReader = (req, res, next) => {
   const { fileDir, mimeType } = req;
   fs.readFile(fileDir, (error, readPage) => {
     if (!error && readPage) {
-      res.writeHead(200, { 'Content-Type': `text/${mimeType}` });
+      res.writeHead(200, { 'Content-Type': `${mimeType}` });
       res.write(readPage);
       res.status(200).json();
     } else if (error && !readPage) {

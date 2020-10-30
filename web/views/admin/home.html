@@ -18,7 +18,6 @@
         }
         .menu{
             height: 90%;
-            width: 5%;
             bottom: 0%;
             position: fixed;
             background: #0000056c;  /* fallback for old browsers */
@@ -56,29 +55,33 @@
     </style>
 </head>
 <body>
-    <div class="col-sm-12 container container-fluid preLoader" id="preLoader">
-        <img class="center-position" src="./../../images/mainLoader.gif">
-    </div>
     <div class="col-sm-12 container container-fluid no-padding-margin">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 header alive">
-            <div class="row height-full center-position no-padding-margin">
-                <div class="col-xl-3 col-lg-3 col-md-12 center">
-                    <h3 class="center logo">Inspiron</h3>
-                </div>
-                <div class="col-xl-2 col-lg-2 center y-center-position account">
-                    <div class="row height-full no-padding-margin absolute">
-                        <div class="col-xl-6 col-lg-6 height-full center">192.168.0.106</div>
-                        <div class="col-xl-6 col-lg-6 height-full center dropdown">
-                            <img src="./../../images/default.png" id="avatar" style="cursor: pointer;">
+        <div class="row no-padding-margin">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 header alive">
+                <div class="row height-full center-position no-padding-margin">
+                    <div class="col-xl-3 col-lg-3 col-md-12 center">
+                        <h3 class="center logo">Inspiron</h3>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 center y-center-position account">
+                        <div class="row height-full no-padding-margin absolute">
+                            <div class="col-xl-6 col-lg-6 height-full center" id="ipBar"></div>
+                            <div class="col-xl-6 col-lg-6 height-full center dropdown">
+                                <img src="./../../images/default.png" id="avatar" style="cursor: pointer;">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="menu"></div>
+        <div class="row no-padding-margin">
+            <div class="menu col-xl-1 col-lg-1 col-md-1"></div>
+            <div></div>
+        </div>
     </div>
+
     <script src="./../../javascript/common/jquery.js"></script>
     <script src="./../../javascript/bin/environment.js"></script>
+    <script src="./../../javascript/common/preLoder.js"></script>
     <script src="./../../javascript/common/globalFunctions.js"></script>
 </body>
 </html>

@@ -67,6 +67,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     return next(new AppError('The user belonging to this token does not longer exist.', 401));
   }
 
+  currentUser.ip = req.clientIP;
   req.user = currentUser;
   req.token = token;
   res.locals.user = currentUser;
