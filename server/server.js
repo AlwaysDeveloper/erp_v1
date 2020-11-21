@@ -5,8 +5,9 @@ const fs = require('fs');
 const https = require('https');
 const path = require('path');
 
-const app = require('./../app');
-const helperFactory = require('./../utils/helperFactory');
+const app = require('../app');
+const IO = require('./io');
+const helperFactory = require('../utils/helperFactory');
 
 process.on('uncaughtException', error => {
   helperFactory.serverCrashHandler(error);
@@ -27,14 +28,17 @@ mongoose
 
 // process.on('unhandledRejection', error => helperFactory.rejectionHandler(error, server));
 
-https
-  .createServer(
-    {
-      key: fs.readFileSync(path.join(__dirname, 'server.key')),
-      cert: fs.readFileSync(path.join(__dirname, 'server.cert'))
-    },
-    app
-  )
-  .listen(helperFactory.getPort(), () => {
-    console.log('app.erp_v1.local is listening at https://app.erp_v1.local:3000');
-  });
+const server = https.createServer(
+  {
+    key: fs.readFileSync(path.join(__dirname, 'server.key')),
+    cert: fs.readFileSync(path.join(__dirname, 'server.cert'))
+  },
+  app
+);
+
+// eslint-disable-next-line no-new
+new IO(server);
+
+server.listen(helperFactory.getPort(), () => {
+  console.log('app.erp_v1.local is listening at https://app.erp_v1.local:3000');
+});

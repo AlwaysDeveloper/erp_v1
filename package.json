@@ -8,7 +8,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon bin/server.js"
+    "start": "nodemon server/server.js",
+    "migration": "node migrations/migration.js"
   },
   "repository": {
     "type": "git",
@@ -40,8 +41,12 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.5",
     "morgan": "^1.10.0",
+    "myql": "^1.0.0",
+    "mysql": "^2.18.1",
+    "mysql-migrations": "^1.0.7",
     "nodemon": "^2.0.4",
     "redis": "^3.0.2",
+    "socket.io": "^3.0.1",
     "validator": "^13.1.1",
     "xss-clean": "^0.1.1"
   },
