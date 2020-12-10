@@ -30,8 +30,8 @@ mongoose
 
 const server = https.createServer(
   {
-    key: fs.readFileSync(path.join(__dirname, 'server.key')),
-    cert: fs.readFileSync(path.join(__dirname, 'server.cert'))
+    key: fs.readFileSync(path.join(__dirname, './../bin/server.key')),
+    cert: fs.readFileSync(path.join(__dirname, './../bin/server.cert'))
   },
   app
 );

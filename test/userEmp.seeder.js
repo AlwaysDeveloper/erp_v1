@@ -1,33 +1,34 @@
 const axios = require('axios');
 const progress = require('cli-progress');
 const _colors = require('colors');
-const mysql = require('mysql');
+const Sequelize = require('sequelize');
 
 const { JsonWebTokenError } = require('jsonwebtoken');
 const { json } = require('body-parser');
 const Student = require('../models/studentModel');
 const Emp = require('../models/empModel');
 
-const connect = mysql.createConnection({
+const sequelize = new Sequelize('erp_v1', 'root', 'M@nvi0712', {
   host: 'localhost',
-  port: '3306',
-  database: 'erp_v1',
-  user: 'root',
-  password: 'M@nvi0712',
-  insecureAuth: true
+  dialect: 'mysql'
 });
-connect.connect(function(err) {
-  if (err) {
-    console.error(`error connecting: ${err.stack}`);
-    return;
-  }
-  console.log(`connected as id ${connect.threadId}`);
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+
+const User = sequelize.define('user', {
+  username: Sequelize.STRING(30),
+  birthday: Sequelize.DATE
 });
-connect.query('SHOW DATABASES', (err, result, fields) => {
-  if (err) throw err;
-  console.log(result);
+sequelize.sync({ force: true }).then(() => {
+  console.log(`Database & tables created!`);
 });
-connect.end();
 // function totalStudents(feildObj) {
 //   let total = 0;
 //   for (const [value] in Object.entries(feildObj)) {
